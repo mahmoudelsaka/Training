@@ -1,0 +1,26 @@
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_hr_employee_form_inherited_is_open" model="ir.ui.view">
+            <field name="name">Inherited Form View For training</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='toggle_active']" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <!--<page string="Courses">-->
+                      <!--<field name="cour_ids"/>-->
+                    <!--</page>-->
+                    <button name="%(training_training_action)d"
+                        type="action"
+                        domain="[('employee_id.user_id','=',user.id)]"
+                        class="oe_stat_button"
+                        icon="fa-book"
+                        help="Remaining Courses">
+                    <field string="Courses" name="cour_ids" widget="statinfo"/>
+                </button>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
