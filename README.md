@@ -1,0 +1,1 @@
+# lp-openobject-addons-extra-5.0
