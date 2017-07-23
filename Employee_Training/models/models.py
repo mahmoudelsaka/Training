@@ -156,7 +156,7 @@ class PartnerTrainer(models.Model):
     _inherit = ['mail.thread', 'ir.needaction_mixin', ]
     _rec_name = 'partner_name'
 
-    partner_name = fields.Many2one(comodel_name='res.partner', string='Trainer', domain=[('active', '=', False)])
+    partner_name = fields.Many2one(comodel_name='res.partner', string='Trainer', domain=[('active', '=', True)])
 
 
 
@@ -199,7 +199,7 @@ class CourseTraining(models.Model):
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
-    active = fields.Boolean('Is not Trainer')
+    active = fields.Boolean('Is a Trainer')
 
 
 # ======================================================================
