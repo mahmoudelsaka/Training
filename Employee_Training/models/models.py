@@ -106,7 +106,8 @@ class CourseSchedule(models.Model):
             sch.reserv = calc_reserv.search_count([('course_name.id', '=', sch.id), ('state', '!=', 'cancel'),('state', '!=', 'new')])
             if sch.reserv == sch.capacity:
                 sch.write({'state': 'close'})
-
+            elif sch.reserv < sch.capacity:
+                sch.write({'state':'active'})    
             return
 
 
