@@ -14,7 +14,7 @@
                         <button name="action_hrman"
                                 string="HR Aprrove"
                                 type="object"
-                                groups="ctraining_officer"
+                                groups="Employee_Training.training_officer"
                                 states="hod"
                                 class="btn-primary"/>
                         <button name="action_approve"
