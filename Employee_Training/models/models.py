@@ -199,7 +199,7 @@ class CourseTraining(models.Model):
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
-    active = fields.Boolean('Is not Trainer')
+    active = fields.Boolean('Is a Trainer')
 
 
 # ======================================================================
