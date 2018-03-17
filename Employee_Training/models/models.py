@@ -209,7 +209,13 @@ class ResPartner(models.Model):
 class HREmployee(models.Model):
     _inherit = 'hr.employee'
 
-    cour_ids = fields.Selection(selection=[('new', 'New')])
+    @api.multi
+    def _calc_course(self):
+        for course in self:
+            course_ids = self.env['training.training'].search([('employee_id', '=', course.id)])
+            course.cour_ids = len(course_ids)
+
+    cour_ids = fields.Integer('Course', compute='_calc_course')
 
 
 
