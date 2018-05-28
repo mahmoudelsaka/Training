@@ -26,6 +26,9 @@
         'views/sequence.xml',
         'views/training_employee.xml'
     ],
+    
+       'images': ['static/description/train.jpeg'],
+
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',
