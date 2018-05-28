@@ -109,6 +109,16 @@ class CourseSchedule(models.Model):
             elif sch.reserv < sch.capacity:
                 sch.write({'state':'active'})    
             return
+        
+        
+    @api.onchange('f_date','to_date')
+    def _calc_days(self):
+        if self.f_date and self.to_date and self.f_date <= self.to_date:
+            date_format = "%Y-%m-%d"
+            start_date = datetime.strptime(self.f_date,date_format)
+            end_date = datetime.strptime(self.to_date,date_format)
+            res = end_date - start_date
+            self.duration = str(res.days)    
 
 
     course_id = fields.Many2one(comodel_name='course.training', string='Course',required='1')
