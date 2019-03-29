@@ -1,0 +1,57 @@
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_hr_employee_form_inherited_is_open" model="ir.ui.view">
+            <field name="name">Inherited Form View For training</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="%(training_training_action)d"
+                            type="action"
+                            class="oe_stat_button"
+                            icon="fa-book"
+                            help="Remaining Courses">
+                        <field string="Courses" name="cour_ids" widget="statinfo"/>
+                    </button>
+                </xpath>
+                <xpath expr="//page[@name='personal_information']" position="after">
+                    <page string="Training" name="hr_training">
+                        <group>
+                            <!--<field name="hr_penalty_ids" nolabel="1" context="{'default_employee_id': active_id}" widget="many2many_tags">-->
+                            <field name="hr_traiing_ids" nolabel="1" context="{'default_employee_id': active_id}">
+                                <tree>
+                                    <field name="course_name"/>
+                                    <field name="cours_typ"/>
+                                    <field name="state"/>
+                                    <field name="date_from"/>
+                                    <field name="date_to"/>
+                                    <field name="price_id" sum="total"/>
+                                    <field name="is_agreement"/>
+                                </tree>
+
+                                <!--<form>-->
+                                    <!--<group>-->
+                                        <!--<field name="course_name"/>-->
+                                        <!--<field name="employee_id"/>-->
+                                        <!--<field name="date_from"/>-->
+                                        <!--<field name="date_to"/>-->
+                                        <!--<field name="date_course_typ"/>-->
+                                    <!--</group>-->
+                                <!--</form>-->
+                            </field>
+                            <field name="total_courses_price"/>
+                        </group>
+
+                    </page>
+
+                </xpath>
+                <xpath expr="//field[@name='work_phone']" position="after">
+                    <field name="total_rewards"/>
+
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
