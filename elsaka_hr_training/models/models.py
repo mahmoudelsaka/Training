@@ -50,17 +50,16 @@ class training(models.Model):
 
     @api.constrains('date_from', 'date_to')
     def _check_date(self):
-        for holiday in self:
+        for course in self:
             domain = [
-                ('date_from', '<=', holiday.date_to),
-                ('date_to', '>=', holiday.date_from),
-                ('employee_id', '=', holiday.employee_id.id),
-                ('id', '!=', holiday.id),
-                # ('course_name', '=', holiday.course_name),
+                ('date_from', '<=', course.date_to),
+                ('date_to', '>=', course.date_from),
+                ('employee_id', '=', course.employee_id.id),
+                ('id', '!=', course.id),
                 ('state', 'not in', ['cancel']),
             ]
-            nholidays = self.search_count(domain)
-            if nholidays:
+            ncourse = self.search_count(domain)
+            if ncourse:
                 raise ValidationError(_('You can not have 2 courses that overlaps on same day!'))
 
     #Check Tags
@@ -247,24 +246,23 @@ class HREmployee(models.Model):
 
     cour_ids = fields.Integer('Course', compute='_calc_course')
     hr_traiing_ids = fields.One2many(comodel_name='training.training',inverse_name='employee_id',string='Training')
-    total_courses_price = fields.Float('Total Amount',compute='compute_total_amount')
+    # total_courses_price = fields.Float('Total Amount',compute='compute_total_amount')
     total_rewards = fields.Float('Rewads Amount')
 
 
 
 
 
-    @api.one
-    def compute_total_amount(self):
-        total = 0.00
-        for line in self.hr_traiing_ids:
-            if line.state != 'cancel':
-                total += line.price_id
-                print('TTTTTTTTTTTTTTTTTTTTTT',total)
-        self.total_courses_price = total
-        if self.total_courses_price > self.total_rewards:
-            raise Warning(_('You can not exceed your limit which define in your profile'))
-        print('XXXXXXXXXXXXXXXXXXX',self.total_courses_price)
+    # @api.one
+    # def compute_total_amount(self):
+    #     total = 0.00
+    #     for line in self.hr_traiing_ids:
+    #         if line.state != 'cancel':
+    #             total += line.price_id
+    #             print('TTTTTTTTTTTTTTTTTTTTTT',total)
+    #     self.total_courses_price = total
+    #
+    #     print('XXXXXXXXXXXXXXXXXXX',self.total_courses_price)
 
 
 

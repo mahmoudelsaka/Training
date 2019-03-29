@@ -15,37 +15,7 @@
                         <field string="Courses" name="cour_ids" widget="statinfo"/>
                     </button>
                 </xpath>
-                <xpath expr="//page[@name='personal_information']" position="after">
-                    <page string="Training" name="hr_training">
-                        <group>
-                            <!--<field name="hr_penalty_ids" nolabel="1" context="{'default_employee_id': active_id}" widget="many2many_tags">-->
-                            <field name="hr_traiing_ids" nolabel="1" context="{'default_employee_id': active_id}">
-                                <tree>
-                                    <field name="course_name"/>
-                                    <field name="cours_typ"/>
-                                    <field name="state"/>
-                                    <field name="date_from"/>
-                                    <field name="date_to"/>
-                                    <field name="price_id" sum="total"/>
-                                    <field name="is_agreement"/>
-                                </tree>
 
-                                <!--<form>-->
-                                    <!--<group>-->
-                                        <!--<field name="course_name"/>-->
-                                        <!--<field name="employee_id"/>-->
-                                        <!--<field name="date_from"/>-->
-                                        <!--<field name="date_to"/>-->
-                                        <!--<field name="date_course_typ"/>-->
-                                    <!--</group>-->
-                                <!--</form>-->
-                            </field>
-                            <field name="total_courses_price"/>
-                        </group>
-
-                    </page>
-
-                </xpath>
                 <xpath expr="//field[@name='work_phone']" position="after">
                     <field name="total_rewards"/>
 
