@@ -33,7 +33,5 @@
     'demo': [
         # 'demo/demo.xml',
     ],
-    'price':10,
-    
-    'currency':'EUR'
+   
 }
