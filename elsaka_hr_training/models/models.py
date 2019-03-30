@@ -93,7 +93,7 @@ class training(models.Model):
         if self.is_agreement == True:
             self.state = 'progress'
         else:
-            raise osv.except_osv(_('Warning!'), _("Please make sure you have read the agreement and click on agree"))
+            raise osv.except_osv(_('Warning!'), _("Please make sure you have read the agreement and click on 'Agree'"))
 
     @api.multi
     def action_hrman(self):
