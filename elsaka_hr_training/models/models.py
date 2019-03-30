@@ -93,7 +93,7 @@ class training(models.Model):
         if self.is_agreement == True:
             self.state = 'progress'
         else:
-            raise osv.except_osv(_('Warning!'), _("Please make sure read agreement and check agree\nمن فضلك تاكد من انك قرأت شروط الموافقه ثم اضفط على حقل موافق "))
+            raise osv.except_osv(_('Warning!'), _("Please make sure you have read the agreement and click on agree"))
 
     @api.multi
     def action_hrman(self):
@@ -215,7 +215,7 @@ class CourseTraining(models.Model):
     course = fields.Char(string='Course Name',required='1', track_visibility='onchange')
     code = fields.Char(string='Code', track_visibility='onchange')
     course_type = fields.Selection(selection=[('t','Technical'),('s','Soft Skills')],default='t', track_visibility='onchange')
-    bio_course = fields.Text('Bio', track_visibility='onchange')
+    bio_course = fields.Text('Content', track_visibility='onchange')
     price_ids = fields.Float(string='Price',required='1', track_visibility='onchange')
 
     _sql_constraints = [
