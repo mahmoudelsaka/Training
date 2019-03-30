@@ -26,7 +26,7 @@ class training(models.Model):
                                   states={'draft': [('readonly', False)], 'hod': [('readonly', False)]},
                                   default=_default_employee)
 
-    emp_price = fields.Float('Emp price' , related='employee_id.total_courses_price')
+    # emp_price = fields.Float('Emp price' , related='employee_id.total_courses_price')
     emp_reward = fields.Float('Emp Rewaed' , related='employee_id.total_rewards',readonly=1)
     bio_agrement = fields.Text(string='Agreements', related='course_name.bio', readonly='True')
     state = fields.Selection(selection=[('draft', 'Draft'), ('progress', 'Progress'), ('pending', 'Pending'),
@@ -93,7 +93,7 @@ class training(models.Model):
         if self.is_agreement == True:
             self.state = 'progress'
         else:
-            raise osv.except_osv(_('Warning!'), _("Please make sure you have read the agreement and click on agree"))
+            raise osv.except_osv(_('Warning!'), _("Please make sure you have read the agreement and click on 'Agree'"))
 
     @api.multi
     def action_hrman(self):
@@ -149,8 +149,8 @@ class CourseSchedule(models.Model):
     def _calc_days(self):
         if self.f_date and self.to_date and self.f_date <= self.to_date:
             date_format = "%Y-%m-%d"
-            start_date = datetime.strptime(self.f_date,date_format)
-            end_date = datetime.strptime(self.to_date,date_format)
+            start_date = datetime.strptime(str(self.f_date),date_format)
+            end_date = datetime.strptime(str(self.to_date),date_format)
             res = end_date - start_date
             self.duration = str(int(res.days+1))
 
@@ -215,7 +215,7 @@ class CourseTraining(models.Model):
     course = fields.Char(string='Course Name',required='1', track_visibility='onchange')
     code = fields.Char(string='Code', track_visibility='onchange')
     course_type = fields.Selection(selection=[('t','Technical'),('s','Soft Skills')],default='t', track_visibility='onchange')
-    bio_course = fields.Text('Content', track_visibility='onchange')
+    bio_course = fields.Text('Bio', track_visibility='onchange')
     price_ids = fields.Float(string='Price',required='1', track_visibility='onchange')
 
     _sql_constraints = [

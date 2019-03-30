@@ -59,7 +59,7 @@
                                 <field name="department_id" invisible="1"/>
                                 <field name="company_id"/>
                                 <field name="cours_typ" widget="radio"/>
-                                <field name="emp_price"/>
+                                <!--<field name="emp_price"/>-->
                                 <field name="emp_reward"/>
                             </group>
                         </group>
@@ -114,53 +114,30 @@
             </field>
         </record>
 
-        <record id="training_search_view" model="ir.ui.view">
-            <field name="name">training.search.view</field>
-            <field name="model">training.training</field>
+
+
+        <record id="view_training_filter" model="ir.ui.view">
+           <field name="name">hr.training.search</field>
+           <field name="model">training.training</field>
             <field name="arch" type="xml">
-                <search string="Training">
+               <search string="Employees">
                     <field name="employee_id"/>
                     <field name="department_id"/>
                     <field name="course_name"/>
                     <field name="company_id"/>
-                    <group expand="0" string="Group By">
-                        <filter string="Courses" domain="[]" context="{'group_by':'course_name'}"/>
-                        <filter string="Employees" domain="[]" context="{'group_by':'employee_id'}"/>
-                        <filter string="Department" domain="[]" context="{'group_by':'department_id'}"/>
-                        <filter string="Company" domain="[]" context="{'group_by':'company_id'}"/>
-                        <filter name="groupby_month" context="{'group_by': 'date_from'}" string="Month"/>
+                    <group>
+                        <filter name="course_name" string="Course"  context="{'group_by':'course_name'}"/>
+                        <filter name="employee_id" string="Employee"  context="{'group_by':'employee_id'}"/>
+                        <filter name="department_id" string="Department"  context="{'group_by':'department_id'}"/>
+                        <filter name="company_id" string="Comapany"  context="{'group_by':'company_id'}"/>
+                        <filter name="state" string="Status"  context="{'group_by':'state'}"/>
+                        <filter name="date_course" string="Month"  context="{'group_by':'date_from:month'}"/>
+                        <!--<filter name="groupby_category" string="Category" context = "{'group_by': 'category_id'}"/>-->
+
                     </group>
-                </search>
-            </field>
+            </search>
+           </field>
         </record>
-
-
-        <!--<record id="course_training_search_view" model="ir.ui.view">-->
-        <!--<field name="name">Training.Search.View</field>-->
-        <!--<field name="model">training.training</field>-->
-        <!--<field name="arch" type="xml">-->
-        <!--<search string="Course">-->
-        <!--<field name="course_name"/>-->
-        <!--<field name="employee_id"/>-->
-        <!--<field name="state"/>-->
-        <!--<field name="is_agreement"/>-->
-        <!--<group expand="0" string="Group By" domain="[('employee_id.user_id', '=', uid)]">-->
-        <!--<filter name="groupby_course_name" context="{'group_by':'course_name'}" string="Course"/>-->
-        <!--<filter name="employee_id" context="{'group_by': 'employee_id'}" string="Employee"/>-->
-        <!--<filter name="department_id" context="{'group_by': 'department_id'}" string="Department"/>-->
-        <!--<filter name="company_id" context="{'group_by': 'company_id'}" string="Company"/>-->
-        <!--<filter name="state" context="{'group_by': 'state'}" string="State"/>-->
-        <!--<filter name="groupby_month" context="{'group_by': 'date_from:month'}" string="Start Month"/>-->
-        <!--<filter name="year" string="Year"-->
-        <!--domain="['|','&amp;',('date_to', '&lt;=', time.strftime('%%Y-12-31')),-->
-        <!--('date_to', '&gt;=', time.strftime('%%Y-01-01')),-->
-        <!--'&amp;',('date_from', '&lt;=', time.strftime('%%Y-12-31')),-->
-        <!--('date_from', '&gt;=', time.strftime('%%Y-01-01'))]"-->
-        <!--help="Current Year Leaves"/>-->
-        <!--</group>-->
-        <!--</search>-->
-        <!--</field>-->
-        <!--</record>-->
 
         <record id="view_training_report_graph" model="ir.ui.view">
             <field name="name">Training Report Pivot</field>
@@ -351,22 +328,28 @@
         </record>
 
 
+
+
         <record id="course_schedule_search_view" model="ir.ui.view">
-            <field name="name">course.search.view</field>
-            <field name="model">course.schedule</field>
+           <field name="name">course.schedule.search.view</field>
+           <field name="model">course.schedule</field>
             <field name="arch" type="xml">
-                <search string="Course">
+                <search string="Course Schedule">
                     <field name="course_id"/>
                     <field name="trainer_id"/>
                     <field name="price"/>
-                    <group expand="0" string="Group By">
-                        <filter string="Courses" domain="[]" context="{'group_by':'course_id'}"/>
-                        <filter string="Trainer" domain="[]" context="{'group_by':'trainer_id'}"/>
-                        <filter name="groupby_month" context="{'group_by': 'f_date'}" string="Month"/>
+                    <group>
+                        <filter name="course_id" string="Course"  context="{'group_by':'course_id'}"/>
+                        <filter name="trainer_id" string="Trainer"  context="{'group_by':'trainer_id'}"/>
+                        <filter name="state" string="Status"  context="{'group_by':'state'}"/>
+                        <filter name="date_course" string="Month"  context="{'group_by':'f_date:month'}"/>
+                        <!--<filter name="groupby_category" string="Category" context = "{'group_by': 'category_id'}"/>-->
+
                     </group>
-                </search>
-            </field>
+            </search>
+           </field>
         </record>
+
 
 
         <record id="partner_trainer_action" model="ir.actions.act_window">
