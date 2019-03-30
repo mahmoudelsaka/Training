@@ -33,4 +33,5 @@
     'demo': [
         # 'demo/demo.xml',
     ],
+    'price':10
 }
