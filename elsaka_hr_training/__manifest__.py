@@ -33,5 +33,9 @@
     'demo': [
         # 'demo/demo.xml',
     ],
+    
+     'installable': True,
+    'auto_install': False,
+    'licence': 'Affero GPL-3',
    
 }
