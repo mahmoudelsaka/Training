@@ -15,7 +15,7 @@
 
     # any module necessary for this one to work correctly
     'depends': ['base','sale','mail','hr'],
-
+     'license': 'AGPL-3',
     # always loaded
     'data': [
 
@@ -36,6 +36,6 @@
     
      'installable': True,
     'auto_install': False,
-    'licence': 'Affero GPL-3',
+    
    
 }
