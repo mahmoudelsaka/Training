@@ -59,8 +59,6 @@
                                 <field name="department_id" invisible="1"/>
                                 <field name="company_id"/>
                                 <field name="cours_typ" widget="radio"/>
-                                <!--<field name="emp_price"/>-->
-                                <field name="emp_reward"/>
                             </group>
                         </group>
                         <notebook>
