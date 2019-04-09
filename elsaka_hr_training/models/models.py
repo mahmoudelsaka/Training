@@ -26,8 +26,7 @@ class training(models.Model):
                                   states={'draft': [('readonly', False)], 'hod': [('readonly', False)]},
                                   default=_default_employee)
 
-    # emp_price = fields.Float('Emp price' , related='employee_id.total_courses_price')
-    emp_reward = fields.Float('Emp Rewaed' , related='employee_id.total_rewards',readonly=1)
+   
     bio_agrement = fields.Text(string='Agreements', related='course_name.bio', readonly='True')
     state = fields.Selection(selection=[('draft', 'Draft'), ('progress', 'Progress'), ('pending', 'Pending'),
                                         ('approve', 'Approved'), ('done', 'Done'), ('cancel', 'Canceled')
